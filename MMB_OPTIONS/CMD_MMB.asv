@@ -1,4 +1,4 @@
-function function_output = CMD_MMB(models,rules,output,shock,varargin)
+function CMD_MMB(models,rules,output,shock,varargin)
 
 modelsvec = de2bi(models,93);       % 1*93 vector for selecting models to run
 rule = de2bi(rules,11);             % 1*11 vector for selecting rules to run
@@ -78,21 +78,13 @@ MMB_opt2
                 modelbase.modelchosen = modelbase.modelchosenall(modelbase.epsilon);
                 modelbase.rule=rule;
                 modelbase.exercise = 2;
-                try 
-                    loadedVars =  load('Modelbase.mat', 'modelbase');
-                    modelbase.result = loadedVars.modelbase.result;
-                catch
-                end
-                
                 save Modelbase modelbase                                % neccessary to save in between as dynare clears the workspace             
-                     MMB_opt2
+         MMB_opt2
                 modelbase.exercise = 3;
             end
         end
         
 end
- save Modelbase modelbase 
- function_output = modelbase.result
 end
 
 function MMB_opt1
